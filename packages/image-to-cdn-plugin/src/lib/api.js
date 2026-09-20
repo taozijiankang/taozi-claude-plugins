@@ -23,7 +23,12 @@ export async function requestFigmaImages({ fileKey, nodeIds, scale, format, figm
  * @returns {Promise<string>}
  */
 export async function requestUploadAsset({ src, isCompressed = false, width = 0, height = 0 }) {
-  const res = await fetch("https://chrome-extension-service-test.100cbc.com/oss/upload", {
+  // 上传地址走环境变量，避免内部服务地址写死在源码里随 git 泄露
+  const uploadUrl = process.env.IMAGE_TO_CDN_PLUGIN_UPLOAD_URL;
+  if (!uploadUrl) {
+    throw new Error("请先设置环境变量 IMAGE_TO_CDN_PLUGIN_UPLOAD_URL");
+  }
+  const res = await fetch(uploadUrl, {
     method: "POST",
     body: JSON.stringify({ imgUrl: src, isCompressed, size: { width, height } }),
     headers: { "Content-Type": "application/json" }

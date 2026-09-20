@@ -17,6 +17,7 @@
 ## 前置条件
 
 - `figma-node-to-cdn` 需要一个 Figma Personal Access Token（`figd_` 开头），通过环境变量 `FIGMA_API_KEY` 提供，或运行命令时按提示输入。
+- 两个 skill 都需要 OSS 上传地址，通过环境变量 `IMAGE_TO_CDN_PLUGIN_UPLOAD_URL` 提供。
 
 ## 安装
 

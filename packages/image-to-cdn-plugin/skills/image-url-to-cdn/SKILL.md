@@ -12,6 +12,8 @@ disable-model-invocation: false
 
 用户给出一个或多个图片 URL（多个用逗号分隔）：
 
+上传地址从环境变量 `IMAGE_TO_CDN_PLUGIN_UPLOAD_URL` 读取；若未设置，向用户索取。
+
 ```bash
 node "${CLAUDE_PLUGIN_ROOT}/src/bin/image-url-to-cdn.js" --image-url <url1,url2>
 ```

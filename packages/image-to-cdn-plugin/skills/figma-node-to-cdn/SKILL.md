@@ -13,8 +13,9 @@ disable-model-invocation: false
 用户给出 Figma 链接，或文件 key + 节点 id：
 
 1. 确定 Figma Token：优先使用环境变量 `FIGMA_API_KEY`；若未设置，向用户索取 Figma Personal Access Token（`figd_` 开头）。
-2. 从链接中提取 `fileKey`（`/design/<fileKey>/` 部分）和 `nodeIds`（`node-id=1-2` 对应 `1-2`，多个用逗号分隔）。
-3. 运行脚本：
+2. 确定 OSS 上传地址：从环境变量 `IMAGE_TO_CDN_PLUGIN_UPLOAD_URL` 读取；若未设置，向用户索取。
+3. 从链接中提取 `fileKey`（`/design/<fileKey>/` 部分）和 `nodeIds`（`node-id=1-2` 对应 `1-2`，多个用逗号分隔）。
+4. 运行脚本：
 
    ```bash
    FIGMA_API_KEY=<token> node "${CLAUDE_PLUGIN_ROOT}/src/bin/figma-node-to-cdn.js" --file-key <fileKey> --node-ids <id1,id2>

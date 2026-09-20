@@ -31,7 +31,7 @@ pnpm + turbo monorepo，每个 `packages/*` 子包是一个 Claude Code 插件�
 ### 新增插件
 
 1. 在 `packages/` 下新建目录（workspace 通配符自动识别）
-2. 必须包含 `.claude-plugin/plugin.json`（`name` / `description` / `author`）和 `package.json`（`name` 用 `@taozi-claude-plugins/<pkg>` 命名空间，仅作标识，插件不发布 npm）
+2. 必须包含 `.claude-plugin/plugin.json`（`name` / `description` / `author`）和 `package.json`（`name` 用 `@taozi-claude-plugins/<pkg>` 命名空间，仅作标识，插件不发布 npm）；`description` 需标注「桃子科技内部使用」
 3. `version` 字段无需手动维护，CI 统一写入
 4. `marketplace.json` 由 `.node/update-marketplace.js` 自动生成，**不要手动修改**
 
