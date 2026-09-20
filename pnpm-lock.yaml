@@ -24,7 +24,7 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
-  packages/upload-image-cdn-plugin:
+  packages/image-to-cdn-plugin:
     devDependencies:
       '@types/node':
         specifier: ^25.9.1
