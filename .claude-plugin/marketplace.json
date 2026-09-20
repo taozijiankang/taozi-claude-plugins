@@ -1,0 +1,22 @@
+{
+  "_comment": "此文件由 .node/update-marketplace.js 自动生成，请勿手动修改",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "taozi-claude-plugins",
+  "owner": {
+    "name": "taozijiankang"
+  },
+  "metadata": {
+    "description": "taozi 的 Claude Code 插件市场",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "image-to-cdn-plugin",
+      "source": "./packages/image-to-cdn-plugin",
+      "description": "把图片上传 OSS 并转换为 CDN 链接，提供 figma-node-to-cdn（Figma 节点）与 image-url-to-cdn（图片地址）两个 skill，自动触发",
+      "author": {
+        "name": "taozijiankang"
+      }
+    }
+  ]
+}

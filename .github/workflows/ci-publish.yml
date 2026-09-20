@@ -1,0 +1,71 @@
+name: CI & Publish
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  ci-publish:
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        node-version: [20]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: "9.11.0"
+
+      - name: 使用 Node.js ${{ matrix.node-version }} 版本
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+
+      - name: 安装依赖
+        run: pnpm install
+
+      - name: Typecheck
+        run: pnpm run typecheck
+
+      - name: Build
+        run: pnpm run build
+
+      - name: Test
+        run: pnpm run test
+
+      - name: 迭代版本号
+        run: node ./.node/iteration-version.js -m ${{ vars.MAJOR_VN }} -n ${{ vars.MINOR_VN }}
+
+      - name: 更新 marketplace.json
+        run: node ./.node/update-marketplace.js
+
+      - name: 提交版本号变更
+        id: version_commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json packages/*/package.json packages/*/.claude-plugin/plugin.json .claude-plugin/marketplace.json
+          VERSION=$(node -p "require('./package.json').version")
+          git commit -m "chore: 迭代版本号 v${VERSION}"
+          git push
+          echo "VERSION=${VERSION}" >> $GITHUB_OUTPUT
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+
+      - name: 创建 GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.version_commit.outputs.VERSION }}
+          release_name: Release v${{ steps.version_commit.outputs.VERSION }}
+          commitish: ${{ steps.version_commit.outputs.sha }}
+          draft: false
+          prerelease: false
