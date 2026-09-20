@@ -1,7 +1,7 @@
 {
   "name": "taozi-claude-plugins",
   "version": "0.1.1",
-  "description": "taozi 的 Claude Code 插件市场",
+  "description": "taozi 的 Claude Code 插件市场（桃子科技内部使用，不对外分发）",
   "type": "module",
   "private": true,
   "repository": {

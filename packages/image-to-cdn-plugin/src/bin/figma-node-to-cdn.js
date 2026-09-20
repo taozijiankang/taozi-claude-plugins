@@ -19,7 +19,8 @@ function printHelp() {
   --compress          是否压缩，默认 false
 
 环境变量：
-  FIGMA_API_KEY       Figma Personal Access Token
+  FIGMA_API_KEY                   Figma Personal Access Token
+  IMAGE_TO_CDN_PLUGIN_UPLOAD_URL  OSS 上传接口地址（必填，内部服务地址不写死在源码）
 `);
 }
 
