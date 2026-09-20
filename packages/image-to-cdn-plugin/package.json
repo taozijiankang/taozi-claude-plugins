@@ -1,6 +1,6 @@
 {
   "name": "@taozi-claude-plugins/image-to-cdn-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "把图片（Figma 节点或任意图片地址）上传 OSS 并转换为 CDN 链接（skill，自动触发）",
   "type": "module",
   "private": false,

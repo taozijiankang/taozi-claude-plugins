@@ -1,6 +1,6 @@
 {
   "name": "taozi-claude-plugins",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "taozi 的 Claude Code 插件市场",
   "type": "module",
   "private": true,
