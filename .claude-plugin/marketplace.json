@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "taozi 的 Claude Code 插件市场（桃子科技内部使用，不对外分发）",
-    "version": "0.1.1"
+    "version": "0.1.2"
   },
   "plugins": [
     {
